@@ -1,3 +1,7 @@
+general_descrpition = """Note that the scored document is an end-of-course survey from a course of an online iMBA program: Global Strategy. 
+To pass the course, students are asked to complete 8 invidual assignments on Canvas and complete 2 MOOCs on Coursera. 
+This course offers weekly Live Sessions on Zoom and office hours. Grading, feedback and grading disputes are handled by TAs."""
+
 # Distill - Filter ========================
 filter_prompt = """
 I have the following TEXT EXAMPLE:
@@ -35,6 +39,8 @@ Please write a summary of {n_concepts_phrase} for these examples. {seeding_phras
 }}
 """
 
+synthesize_prompt = synthesize_prompt + general_descrpition
+
 # Review ========================
 review_remove_prompt = """
 I have this set of themes generated from text examples:
@@ -54,6 +60,8 @@ Please respond ONLY with a valid JSON in the following format:
 }}
 """
 
+review_remove_prompt = review_remove_prompt + general_descrpition
+
 review_remove_prompt_seed = """
 I have this dict of CONCEPTS (keys) and their corresponding inclusion criteria (values), as follows:
 {concepts}
@@ -71,6 +79,8 @@ Please respond ONLY with a valid JSON in the following format:
     ]
 }}
 """
+
+review_remove_prompt_seed = review_remove_prompt_seed + general_descrpition
 
 review_merge_prompt = """
 I have this set of themes generated from text examples:
@@ -138,6 +148,8 @@ TASK:
     }}
 """
 
+score_no_highlight_prompt = score_no_highlight_prompt + general_descrpition
+
 score_highlight_prompt = """
 CONTEXT: 
     I have the following text examples in a JSON:
@@ -166,6 +178,8 @@ TASK:
         ]
     }}
 """
+
+score_highlight_prompt = score_highlight_prompt + general_descrpition
 
 score_overall_topic_prompt = """
 CONTEXT: 

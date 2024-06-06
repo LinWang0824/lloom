@@ -734,6 +734,13 @@ async def score_helper(concept, batch_i, concept_id, df, text_col, doc_id_col, m
     ex_ids = [str(x) for x in df[doc_id_col].tolist()]
     ex_id_sets = [ex_ids[i:i+batch_size] for i in indices]
     in_dfs = [df[df[doc_id_col].isin(cur_ex_ids)] for cur_ex_ids in ex_id_sets]
+    # DEBUG: replace in_dfs col "Question 21" with the same col from sess.df_bullets
+    ruid2bullet = dict(zip(sess.df_bullets.iloc[:, 0], sess.df_bullets.iloc[:, 1]))
+    for i, in_df in enumerate(in_dfs):
+        in_df[text_col] = in_df[doc_id_col].apply(lambda x: ruid2bullet.get(x, ""))
+        in_dfs[i] = in_df
+
+
     arg_dicts = [
         get_ex_batch_args(df, text_col, doc_id_col, concept.name, concept.prompt) for df in in_dfs
     ]

@@ -33,7 +33,7 @@ class lloom:
         id_col: str = None,
         distill_model_name = "gpt-3.5-turbo",
         embed_model_name = "text-embedding-3-large",
-        synth_model_name = "gpt-4-turbo",
+        synth_model_name = "gpt-4o",
         score_model_name = "gpt-3.5-turbo",
         rate_limits = {}, # D_i = "model-name": (n_requests, wait_time_secs)
         debug: bool = False,
